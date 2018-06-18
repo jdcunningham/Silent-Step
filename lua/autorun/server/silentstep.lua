@@ -36,7 +36,7 @@ end
 hook.Add( "Move", "CyberScriptz_SilentStep_Move", function( ply, mv )
 	local steamid = ply:SteamID()
 	if mv:KeyDown( IN_FORWARD ) or mv:KeyDown( IN_BACK ) or mv:KeyDown( IN_MOVELEFT ) or mv:KeyDown( IN_MOVERIGHT ) then
-		if not ( ( SStep.silence_slow or SStep.silence_eluded ) and not mv:KeyDown( IN_SPEED ) and ( ( silent_walking and mv:KeyDown( IN_WALK ) ) or ply:Crouching() ) ) then
+		if not ( ( SStep.silence_slow or SStep.silence_eluded ) and ( ( silent_walking and mv:KeyDown( IN_WALK ) and not mv:KeyDown( IN_SPEED ) ) or ply:Crouching() ) ) then
 			if SStep.silent[steamid] then
 				timer.Stop( "silent-" .. steamid )
 				SStep.silent[steamid] = false
